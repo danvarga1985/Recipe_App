@@ -35,7 +35,7 @@ public class Recipe {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Catergory> categories;
+    private Set<Category> categories;
 
     /*
     Getters & Setters
@@ -136,11 +136,11 @@ public class Recipe {
         this.notes = notes;
     }
 
-    public Set<Catergory> getCatergories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCatergories(Set<Catergory> catergories) {
-        this.categories = catergories;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
