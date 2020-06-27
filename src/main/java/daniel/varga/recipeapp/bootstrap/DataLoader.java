@@ -4,18 +4,18 @@ import daniel.varga.recipeapp.domain.*;
 import daniel.varga.recipeapp.repositories.CategoryRepository;
 import daniel.varga.recipeapp.repositories.RecipeRepository;
 import daniel.varga.recipeapp.repositories.UnitOfMeasureRepository;
-import org.springframework.boot.CommandLineRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private CategoryRepository categoryRepository;
@@ -28,9 +28,12 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading bootstrap data.");
     }
 
     public List<Recipe> getRecipes() {
