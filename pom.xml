@@ -61,6 +61,18 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7-1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.5.1</version>
+        </dependency>
 
 
     </dependencies>
@@ -81,10 +93,10 @@
                         <include>**/*IT.java</include>
                     </includes>
 <!--                    old workaround - may not needed anymore-->
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>${basedir}/target/classes</additionalClasspathElement>
-                    </additionalClasspathElements>
-                    <parallel>none</parallel>
+<!--                    <additionalClasspathElements>-->
+<!--                        <additionalClasspathElement>${basedir}/target/classes</additionalClasspathElement>-->
+<!--                    </additionalClasspathElements>-->
+<!--                    <parallel>none</parallel>-->
                 </configuration>
                 <executions>
                     <execution>
