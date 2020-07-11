@@ -1,5 +1,8 @@
 package daniel.varga.recipeapp.services.serviceimpl;
 
+import daniel.varga.recipeapp.commands.RecipeCommand;
+import daniel.varga.recipeapp.converters.RecipeCommandToRecipe;
+import daniel.varga.recipeapp.converters.RecipeToRecipeCommand;
 import daniel.varga.recipeapp.domain.Recipe;
 import daniel.varga.recipeapp.repositories.RecipeRepository;
 import daniel.varga.recipeapp.services.RecipeService;
@@ -15,9 +18,13 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -39,5 +46,14 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         return recipeOptional.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }

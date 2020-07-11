@@ -1,5 +1,6 @@
 package daniel.varga.recipeapp.services;
 
+import daniel.varga.recipeapp.commands.RecipeCommand;
 import daniel.varga.recipeapp.domain.Recipe;
 import daniel.varga.recipeapp.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,7 @@ public interface RecipeService {
     Set<Recipe> getRecipes();
 
     Recipe findById(Long id);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 
 }

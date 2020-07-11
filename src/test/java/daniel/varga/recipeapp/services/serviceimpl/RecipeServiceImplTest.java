@@ -1,5 +1,7 @@
 package daniel.varga.recipeapp.services.serviceimpl;
 
+import daniel.varga.recipeapp.converters.RecipeCommandToRecipe;
+import daniel.varga.recipeapp.converters.RecipeToRecipeCommand;
 import daniel.varga.recipeapp.domain.Recipe;
 import daniel.varga.recipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,12 +23,18 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @BeforeEach
     void setUp() {
         //Same result as @InjectMocks on recipeService
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
 
 
     }
