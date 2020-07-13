@@ -1,6 +1,5 @@
 package daniel.varga.recipeapp.commands;
 
-import daniel.varga.recipeapp.domain.UnitOfMeasure;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
