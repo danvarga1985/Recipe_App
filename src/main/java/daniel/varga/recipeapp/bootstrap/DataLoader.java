@@ -43,37 +43,37 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         //get UOMs
         Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
 
-        if(!eachUomOptional.isPresent()){
+        if(eachUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
         Optional<UnitOfMeasure> tableSpoonUomOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
 
-        if(!tableSpoonUomOptional.isPresent()){
+        if(tableSpoonUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
         Optional<UnitOfMeasure> teaSpoonUomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
-        if(!teaSpoonUomOptional.isPresent()){
+        if(teaSpoonUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
         Optional<UnitOfMeasure> dashUomOptional = unitOfMeasureRepository.findByDescription("Dash");
 
-        if(!dashUomOptional.isPresent()){
+        if(dashUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
         Optional<UnitOfMeasure> pintUomOptional = unitOfMeasureRepository.findByDescription("Pint");
 
-        if(!pintUomOptional.isPresent()){
+        if(pintUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
         Optional<UnitOfMeasure> cupsUomOptional = unitOfMeasureRepository.findByDescription("Cup");
 
-        if(!cupsUomOptional.isPresent()){
+        if(cupsUomOptional.isEmpty()){
             throw new RuntimeException("Expected UOM Not Found");
         }
 
@@ -88,13 +88,13 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         //get Categories
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
 
-        if(!americanCategoryOptional.isPresent()){
+        if(americanCategoryOptional.isEmpty()){
             throw new RuntimeException("Expected Category Not Found");
         }
 
         Optional<Category> mexicanCategoryOptional = categoryRepository.findByDescription("Mexican");
 
-        if(!mexicanCategoryOptional.isPresent()){
+        if(mexicanCategoryOptional.isEmpty()){
             throw new RuntimeException("Expected Category Not Found");
         }
 
@@ -106,7 +106,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.setDescription("Perfect Guacamole");
         guacRecipe.setPrepTime(10);
         guacRecipe.setCookTime(0);
+        guacRecipe.setServings(4);
         guacRecipe.setDifficulty(Difficulty.EASY);
+        guacRecipe.setSource("Simply Recipes");
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" +
@@ -147,7 +149,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
         tacosRecipe.setCookTime(9);
         tacosRecipe.setPrepTime(20);
+        tacosRecipe.setServings(4);
         tacosRecipe.setDifficulty(Difficulty.MODERATE);
+        tacosRecipe.setSource("Simply Recipes");
 
         tacosRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
                 "2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
