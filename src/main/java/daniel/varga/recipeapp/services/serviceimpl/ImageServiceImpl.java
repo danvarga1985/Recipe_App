@@ -14,7 +14,7 @@ import java.io.IOException;
 @Service
 public class ImageServiceImpl implements ImageService {
 
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
 
     public ImageServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;

@@ -4,6 +4,7 @@ import daniel.varga.recipeapp.commands.RecipeCommand;
 import daniel.varga.recipeapp.converters.RecipeCommandToRecipe;
 import daniel.varga.recipeapp.converters.RecipeToRecipeCommand;
 import daniel.varga.recipeapp.domain.Recipe;
+import daniel.varga.recipeapp.exceptions.NotFoundException;
 import daniel.varga.recipeapp.repositories.RecipeRepository;
 import daniel.varga.recipeapp.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isEmpty()) {
-            throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found! For ID value: " + id.toString());
         }
 
         return recipeOptional.get();
